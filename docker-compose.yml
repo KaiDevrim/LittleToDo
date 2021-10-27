@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  littletodo:
+    image: ${DOCKER_REGISTRY-}littletodo
+    build:
+      context: .
+      dockerfile: LittleToDo/Dockerfile

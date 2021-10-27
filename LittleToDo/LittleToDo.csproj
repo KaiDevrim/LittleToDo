@@ -4,10 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-LittleToDo-20E5E42A-59F2-497E-847A-A910A48AB00E</UserSecretsId>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Views\Todo\" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -24,5 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Todo\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

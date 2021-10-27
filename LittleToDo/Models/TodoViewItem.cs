@@ -3,8 +3,6 @@ namespace LittleToDo.Models
 {
     public class TodoViewItem
     {
-        public TodoViewItem()
-        {
-        }
+        public TodoItem[] Items { get; set; }
     }
 }
