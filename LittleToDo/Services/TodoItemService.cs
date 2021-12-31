@@ -21,15 +21,16 @@ namespace LittleToDo.Services
         public async Task<TodoItem[]> GetIncompleteItemsAsync(IdentityUser user)
         {
             return await _context.Items
-                .Where(x => x.isDone == false)
+                .Where(x => x.isDone == false && x.UserId == user.Id)
                 .ToArrayAsync();
         }
 
-        public async Task<bool> AddItemAsync(TodoItem newItem)
+        public async Task<bool> AddItemAsync(TodoItem newItem, IdentityUser user)
         {
             newItem.id = Guid.NewGuid();
             // newItem.DueAt = DateTimeOffset.Now.AddDays(3);
             newItem.isDone = false;
+            newItem.UserId = user.Id;
 
             _context.Items.Add(newItem);
 
@@ -37,10 +38,10 @@ namespace LittleToDo.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> MarkDoneAsync(Guid id)
+        public async Task<bool> MarkDoneAsync(Guid id, IdentityUser user)
         {
             var item = await _context.Items
-                .Where(x => x.id == id)
+                .Where(x => x.id == id && x.UserId == user.Id)
                 .SingleOrDefaultAsync();
 
             if (item == null) return false;
